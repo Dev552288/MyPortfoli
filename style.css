@@ -29,10 +29,10 @@ header {
 h1 {
     margin: 10px 0 5px;
 }
-
+/* here i write section border line */
 h2 {
     color: #007BFF;
-    border-bottom: 2px solid #ccc;
+    /* border-bottom: 2px solid #ccc; */
     padding-bottom: 5px;
 }
 
