@@ -26,6 +26,7 @@ h1 {
     font-size: 2.2em;
     color: #222;
 }
+
 /* here i write section border line */
 h2 {
     color: #007BFF;
@@ -59,3 +60,4 @@ ul li::before {
     color: #007BFF;
     font-weight: bold;
 }
+
