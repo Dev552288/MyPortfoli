@@ -1,243 +1,62 @@
-/* =========================
-   ROOT VARIABLES
-========================= */
-:root {
-  --bg: #0b0f1a;
-  --card: rgba(255, 255, 255, 0.06);
-  --glass: rgba(255, 255, 255, 0.08);
-  --text: #e6e9f2;
-  --muted: #a0a7b8;
-  --primary: #00d4ff;
-  --secondary: #7c4dff;
-  --border: rgba(255, 255, 255, 0.12);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* =========================
-   GLOBAL
-========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  font-family: "Segoe UI", sans-serif;
-}
-
 body {
-  background: radial-gradient(circle at top, #111a2e, var(--bg));
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* =========================
-   NAVBAR
-========================= */
 header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  z-index: 1000;
+    text-align: center;
+    background: transparent;
+    padding: 20px 0;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
+.profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
-nav .logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--primary);
+h1 {
+    margin: 10px 0 5px;
+    font-size: 2.2em;
+    color: #222;
 }
 
-nav ul {
-  display: flex;
-  gap: 25px;
-  list-style: none;
+/* here i write section border line */
+h2 {
+    color: #007BFF;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-nav ul li a {
-  color: var(--text);
-  text-decoration: none;
-  transition: 0.3s;
-  position: relative;
-}
-
-nav ul li a:hover,
-nav ul li a.active {
-  color: var(--primary);
-}
-
-/* underline animation */
-nav ul li a::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: var(--primary);
-  transition: 0.3s;
-}
-
-nav ul li a:hover::after {
-  width: 100%;
-}
-
-/* =========================
-   HERO SECTION
-========================= */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-}
-
-.hero-card {
-  background: var(--card);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(15px);
-  border: 1px solid var(--border);
-  animation: fadeIn 1.2s ease-in-out;
-}
-
-.hero h1 {
-  font-size: 42px;
-}
-
-.hero h1 span {
-  color: var(--primary);
-}
-
-.hero p {
-  margin-top: 10px;
-  color: var(--muted);
-}
-
-/* =========================
-   BUTTON
-========================= */
-.btn {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
-}
-
-/* =========================
-   SECTIONS
-========================= */
 section {
-  padding: 100px 40px;
+    margin-bottom: 30px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
 }
 
-.section-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: var(--primary);
+section:hover {
+    transform: translateY(-4px);
 }
 
-/* =========================
-   GLASS CARDS
-========================= */
-.card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 20px;
-  margin: 15px 0;
-  box-shadow: var(--shadow);
-  transition: 0.3s;
-  backdrop-filter: blur(10px);
+ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* =========================
-   SKILLS GRID
-========================= */
-.skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-}
-
-.skill {
-  background: var(--glass);
-  padding: 15px;
-  text-align: center;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  transition: 0.3s;
-}
-
-.skill:hover {
-  background: rgba(0, 212, 255, 0.1);
-  transform: scale(1.05);
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 20px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero h1 {
-    font-size: 28px;
-  }
-
-  section {
-    padding: 70px 20px;
-  }
+ul li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #007BFF;
+    font-weight: bold;
 }
