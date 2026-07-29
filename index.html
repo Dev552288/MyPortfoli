@@ -235,7 +235,7 @@
       <div class="terminal-top"><span></span><span></span><span></span><span class="lbl">POS TERMINAL — SIMULATED</span></div>
       <div class="terminal-screen">
         <div class="chip-icon pulse"></div>
-    <div id="term-line1">TXN TYPE: BALANCE ENQUIRY,CASH WITHDRAWAL,SALE</div>
+        <div id="term-line1">TXN TYPE: BALANCE ENQUIRY</div>
         <div id="term-line2"><span id="term-typed"></span><span class="cursor"></span></div>
         <div id="term-status"></div>
       </div>
@@ -382,16 +382,39 @@
   }, {threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-  // terminal typing sequence
-  const seq = [
-    { text: "READING CHIP...", status: "" },
-    { text: "VERIFYING PIN...", status: "" },
-    { text: "₹ 4,250.00", status: "✔ APPROVED" }
+  // terminal typing sequence — cycles through Balance Enquiry, Cash Withdrawal, Sale
+  const transactions = [
+    {
+      type: "BALANCE ENQUIRY",
+      steps: [
+        { text: "READING CHIP...", status: "" },
+        { text: "VERIFYING PIN...", status: "" },
+        { text: "₹ 4,250.00", status: "✔ APPROVED" }
+      ]
+    },
+    {
+      type: "CASH WITHDRAWAL",
+      steps: [
+        { text: "READING CHIP...", status: "" },
+        { text: "DISPENSING CASH...", status: "" },
+        { text: "₹ 2,000.00", status: "✔ APPROVED" }
+      ]
+    },
+    {
+      type: "SALE",
+      steps: [
+        { text: "READING CHIP...", status: "" },
+        { text: "PROCESSING SALE...", status: "" },
+        { text: "₹ 899.00", status: "✔ APPROVED" }
+      ]
+    }
   ];
+
   const typedEl = document.getElementById('term-typed');
   const statusEl = document.getElementById('term-status');
   const line1El = document.getElementById('term-line1');
-  let step = 0;
+  let txnIndex = 0;
+  let stepIndex = 0;
 
   function typeText(str, cb){
     typedEl.textContent = '';
@@ -404,17 +427,22 @@
   }
 
   function runSequence(){
-    const s = seq[step % seq.length];
+    const txn = transactions[txnIndex % transactions.length];
+    const s = txn.steps[stepIndex];
+    line1El.textContent = "TXN TYPE: " + txn.type;
     statusEl.textContent = '';
     statusEl.className = '';
-    line1El.textContent = step % seq.length === 2 ? "TXN TYPE: BALANCE ENQUIRY" : "TXN TYPE: BALANCE ENQUIRY";
     typeText(s.text, ()=>{
       if(s.status){
         statusEl.textContent = s.status;
         statusEl.classList.add('status-approved');
       }
-      step++;
-      setTimeout(runSequence, s.status ? 2200 : 900);
+      stepIndex++;
+      if(stepIndex >= txn.steps.length){
+        stepIndex = 0;
+        txnIndex++;
+      }
+      setTimeout(runSequence, s.status ? 2400 : 900);
     });
   }
   setTimeout(runSequence, 900);
